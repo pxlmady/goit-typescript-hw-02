@@ -1,7 +1,11 @@
 import React from "react";
 import css from "./LoadMoreButton.module.css";
 
-const LoadMoreButton = ({ handleClick }) => {
+interface Props {
+  handleClick: () => void;
+}
+
+const LoadMoreButton: React.FC<Props> = ({ handleClick }) => {
   return (
     <div>
       <button

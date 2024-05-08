@@ -1,7 +1,17 @@
 import React from "react";
 import css from "./ImageCard.module.css";
 
-const ImageCard = ({ photo, handleImageClick }) => {
+interface Props {
+  photo: {
+    urls: {
+      small: string;
+    };
+    alt_description: string;
+  };
+  handleImageClick: (photo: any) => void;
+}
+
+const ImageCard: React.FC<Props> = ({ photo, handleImageClick }) => {
   const handleClick = () => {
     handleImageClick(photo);
   };

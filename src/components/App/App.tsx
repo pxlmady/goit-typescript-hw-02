@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "../SearchBar/SearchBar";
 import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
-import { requestImageGallery } from "../../services/HTTPRequest";
+import { requestImageGallery, ImageData } from "../../services/HTTPRequest";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,30 +11,30 @@ import ImageModal from "../ImageModal/ImageModal";
 import ReactModal from "react-modal";
 
 function App() {
-  const [query, setQuery] = useState("");
-  const [photos, setPhotos] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [totalPageNumber, setTotalPageNumber] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [query, setQuery] = useState<string>("");
+  const [photos, setPhotos] = useState<null | any[]>(null);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [totalPageNumber, setTotalPageNumber] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<any>(null);
   ReactModal.setAppElement("#root");
-  const onSetQuery = (queryWord) => {
+  const onSetQuery = (queryWord: string) => {
     setQuery(queryWord);
     setPageNumber(1);
     setTotalPageNumber(0);
     setPhotos(null);
   };
   const onSetPageNumber = () => {
-    setPageNumber(pageNumber + 1);
+    setPageNumber((prevPageNumber) => prevPageNumber + 1);
   };
   useEffect(() => {
     if (query.length === 0) return;
     async function fetchPhotoGallery() {
       try {
         setIsLoading(true);
-        const data = await requestImageGallery(query, pageNumber);
+        const data: ImageData = await requestImageGallery(query, pageNumber);
 
         setTotalPageNumber(data.total_pages);
         if (data.results && data.results.length > 0) {
@@ -68,7 +68,7 @@ function App() {
   const handleCloseModal = () => {
     setModalIsOpen(false);
   };
-  const handleImageClick = (photo) => {
+  const handleImageClick = (photo: any) => {
     setSelectedPhoto(photo);
     setModalIsOpen(true);
   };

@@ -1,7 +1,23 @@
 import React from "react";
 import css from "./ImageModal.module.css";
 import ReactModal from "react-modal";
-const ImageModal = ({ isOpen, handleCloseModal, selectedPhoto }) => {
+
+interface Props {
+  isOpen: boolean;
+  handleCloseModal: () => void;
+  selectedPhoto: {
+    urls: {
+      regular: string;
+    };
+    alt_description: string;
+  };
+}
+
+const ImageModal: React.FC<Props> = ({
+  isOpen,
+  handleCloseModal,
+  selectedPhoto,
+}) => {
   return (
     <div>
       <ReactModal isOpen={isOpen} onRequestClose={handleCloseModal}>
