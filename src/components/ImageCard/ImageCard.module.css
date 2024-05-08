@@ -1,0 +1,11 @@
+.photoCard {
+  height: 300px;
+  width: 400px;
+  image-rendering: crisp-edges;
+  aspect-ratio: 1;
+  background-size: auto;
+  transition: scale 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.photoCard:hover {
+  scale: 1.05;
+}

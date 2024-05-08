@@ -1,0 +1,52 @@
+.imageModalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+.imageModal {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.imageDescription {
+  font-family: "Poppins", sans-serif;
+  display: block;
+  margin: 0;
+
+  font-weight: 700;
+  text-transform: lowercase;
+  background-color: #ffffff;
+}
+.closeModalButton {
+  border: none;
+  width: 10rem;
+  height: 4rem;
+  border-radius: 1rem;
+  box-shadow: --shadow;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+  background: var(--primary);
+  box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light),
+    inset -0.2rem -0.2rem 1rem var(--primary-dark),
+    0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+  color: var(--greyLight-1);
+  outline: none;
+}
+.closeModalButton:hover {
+  border: none;
+  color: var(--white);
+  outline: none;
+}
+.closeModalButton:focus {
+  box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-dark),
+    inset -0.2rem -0.2rem 1rem var(--primary-light);
+  outline: none !important;
+}
