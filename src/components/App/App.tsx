@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "../SearchBar/SearchBar";
 import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
-import { requestImageGallery, ImageData } from "../../services/HTTPRequest";
+import { requestImageGallery } from "../../services/HTTPRequest";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import toast, { Toaster } from "react-hot-toast";
@@ -34,7 +34,7 @@ function App() {
     async function fetchPhotoGallery() {
       try {
         setIsLoading(true);
-        const data: ImageData = await requestImageGallery(query, pageNumber);
+        const data = await requestImageGallery(query, pageNumber);
 
         setTotalPageNumber(data.total_pages);
         if (data.results && data.results.length > 0) {
