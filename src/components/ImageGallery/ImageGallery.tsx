@@ -2,11 +2,17 @@ import React from "react";
 import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
 
+interface Photo {
+  id: string;
+  urls: {
+    small: string;
+  };
+  alt_description: string;
+}
+
 interface Props {
-  photos: {
-    id: string;
-  }[];
-  handleImageClick: (photo: any) => void;
+  photos: Photo[];
+  handleImageClick: (photo: Photo) => void;
 }
 
 const ImageGallery: React.FC<Props> = ({ photos, handleImageClick }) => {
