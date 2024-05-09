@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+
 const instance = axios.create({
   baseURL: "https://api.unsplash.com/search/photos",
   params: {
@@ -8,14 +9,24 @@ const instance = axios.create({
     content_filter: "high",
   },
 });
+
 export const photoPerPage = 12;
-export async function requestImageGallery(query, pageNumber) {
-  const { data } = await instance.get("", {
+
+export interface ImageData {
+  total_pages: number;
+  results: any[]; // Замените any на тип изображений, которые вы используете
+}
+
+export async function requestImageGallery(
+  query: string,
+  pageNumber: number
+): Promise<ImageData> {
+  const response: AxiosResponse<ImageData> = await instance.get("", {
     params: {
       query: query,
       page: pageNumber,
       per_page: photoPerPage,
     },
   });
-  return data;
+  return response.data;
 }
